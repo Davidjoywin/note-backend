@@ -1,0 +1,7 @@
+note-env
+db.sqlite3
+credential.json
+*/migrations
+__pycache__
+*/__pycache__
+**/*/__pycache__
