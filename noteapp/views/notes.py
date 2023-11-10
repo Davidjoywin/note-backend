@@ -11,15 +11,15 @@ from ..serializer import NoteSerializer
 class Notes(APIView):
     """Get all notes in the db"""
     def get(self, request):
-        notes = Note.objects.all()
+        notes = Note.objects.order_by('-timestamp')
         serializer = NoteSerializer(notes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class UserNotes(APIView):
     """Get all notes for an authenticated user only"""
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     
     def get(self, request):
-        notes = Note.objects.filter(user=request.user.id)
+        notes = Note.objects.filter(user=request.user.id).order_by('-timestamp')
         serializer = NoteSerializer(notes, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

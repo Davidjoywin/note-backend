@@ -13,7 +13,7 @@ from config import createNote, readNote, updateNote, deleteNote
 class NoteView(APIView):
     """Note using the note <id>"""
 
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     
     def get_object(self, id):
         obj = get_object_or_404(Note, pk=id)
@@ -46,7 +46,7 @@ class NoteView(APIView):
 
 class CreateNote(APIView):
     """Create a note for a user"""
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = NoteSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():

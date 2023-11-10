@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.authentication import SessionAuthentication
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 
 from ..serializer import LoginSerializer, UserSerializer
 
@@ -20,7 +20,7 @@ class UserView(APIView):
 class LoginView(APIView):
 
     permission_classes = (permissions.AllowAny,)
-    authentication_classes = (SessionAuthentication,)
+    authentication_classes = (SessionAuthentication, )
     
     def post(self, request):
         serializer = LoginSerializer(data=request.data, context={'request': request})
